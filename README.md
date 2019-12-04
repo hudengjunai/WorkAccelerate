@@ -23,9 +23,17 @@ LDFLAGS=-L$HOME/usr/local/lib ./configure \
     --prefix=$HOME/usr/local
 ```
 
-## anconda 安装（推荐方式）  
-1.使用anaconda 安装conda install -c conda-forge vim 
-2.安装neovim配置   conda install -c conda-forge neovim
+## anconda 安装（推荐方式）     
+1.使用anaconda 安装
+```
+conda install -c conda-forge vim     
+```
+
+2.安装neovim配置   
+```
+conda install -c conda-forge neovim
+```
+3.很多平常没有root权限的软件，以前需要编译安装的，实际上都可以通过anaconda安装，大爱anaconda.
 
 # vim 配置  
 1.继承配置https://github.com/amix/vimrc.git 下的基础配置。
@@ -92,3 +100,15 @@ Zenburn              calendar.vim         powerline            tabulous         
 ## tips  
 * 尽量将所有工作能在一个环境中完成，比如无论在HPC，mac平台，均可以使用相同工作环境完成工作，便于迁移。  
 * 配置尽量统一，可以将一部分配置放置在docker中。  
+
+# vim 学习路径  
+* vimtutor vim 自带使用指南.
+* [vim从入门到精通](https://github.com/wsdjeg/vim-galore-zh_cn)
+* [vim实战]
+* Learning vimscripts # advanced level.
+## vim tips
+ - vim 使用结合工作环境，比如写Python，写C++/makefile/CmakeLists 一键编译调试运行等。可以打造比专用IDE更好用的开发编译调试工作环境。
+ - 当vim的程序编写和shell自动化结合起来后，就能发挥威力了。可以编写shellscript 和vimscripts,将平常工作中的内容流程化固定起来，只需要一键就可以完成很多固定流程的事务处理。  
+ - 以思考的速度来写，脑子有多快，手就有多快。
+
+
