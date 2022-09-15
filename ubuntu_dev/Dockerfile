@@ -1,5 +1,4 @@
 FROM ubuntu:20.04
-MAINTAINER "hudengjun@copr.netease.com"
 ARG DEBIAN_FRONTEND=noninteractive
 ARG HTTPS_PROXY
 ENV TZ=Asia/Shanghai
@@ -141,17 +140,9 @@ RUN apt -y remove golang && apt -y autoremove && \
     tar -xf ghz-linux-x86_64.tar.gz  -C /usr/local && \
     rm -rf *.tar.gz
 
-RUN apt-get update && apt install -y  lsb-core  && \ 
-    git clone --depth 1  --branch release/1.83 https://github.com/google/orbit.git /opt/orbit && cd /opt/orbit && \
-    apt-get install sudo && \
-    rm -rf /var/lib/apt/lists/*
-    #&& \
-    #echo "#!/bin/bash\n\$@" > /usr/bin/sudo && \
-    #chmod +x /usr/bin/sudo
+
 ENV PATH="/usr/local/go/bin:/root/.local/bin:$PATH"
 RUN ln -s /usr/local/ghz /usr/bin/ghz
-RUN cd /opt/orbit && \ 
-    bash ./bootstrap-orbit.sh
 
 ENV https_proxy=""
 
