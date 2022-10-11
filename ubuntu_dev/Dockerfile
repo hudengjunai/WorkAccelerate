@@ -141,9 +141,6 @@ RUN apt -y remove golang && apt -y autoremove && \
     tar -xf ghz-linux-x86_64.tar.gz  -C /usr/local && \
     rm -rf *.tar.gz
 
-<<<<<<< HEAD
-
-=======
 RUN apt-get update && apt install -y  lsb-core  && \ 
     git clone --depth 1  --branch release/1.83 https://github.com/google/orbit.git /opt/orbit && cd /opt/orbit && \
     apt-get install sudo && \
@@ -153,7 +150,6 @@ RUN apt-get update && apt install -y  lsb-core  && \
     #&& \
     #echo "#!/bin/bash\n\$@" > /usr/bin/sudo && \
     #chmod +x /usr/bin/sudo
->>>>>>> 467007a (update some lib)
 ENV PATH="/usr/local/go/bin:/root/.local/bin:$PATH"
 RUN ln -s /usr/local/ghz /usr/bin/ghz
 #RUN cd /opt/orbit && \ 
