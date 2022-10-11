@@ -111,12 +111,12 @@ RUN /opt/vcpkg/vcpkg install protobuf abseil openssl "c-ares" re2 && \
     /opt/vcpkg/vcpkg install gperftools && \ 
     /opt/vcpkg/vcpkg install continuable libcds roaring libuv && \
     /opt/vcpkg/vcpkg install "prometheus-cpp[push]" --recurse hiredis boost-stacktrace breakpad && \
-    /opt/vcpkg/vcpkg install bshoshany-thread-pool && \ 
     /opt/vcpkg/vcpkg install asio libsodium zstd elfutils && \
     /opt/vcpkg/vcpkg install boost-program-options boost-crc double-conversion libevent ftxui && \ 
     /opt/vcpkg/vcpkg install brpc braft --recurse && \ 
     /opt/vcpkg/vcpkg install spdlog boost-logic boost-outcome && \
     /opt/vcpkg/vcpkg install arrow parquet nanobench  boost-bimap fruit range-v3 murmurhash boost-thread && \
+    /opt/vcpkg/vcpkg install rttr kangaru bext-di && \
     rm -rf /opt/vcpkg/packages &&  \ 
     rm -rf /opt/vcpkg/downloads &&  \ 
     rm -rf /opt/vcpkg/buildtrees 
@@ -126,9 +126,10 @@ RUN git clone  https://github.com/hudengjunai/vcpkg_libs.git /tmp/vcpkg_libs && 
     rm -rf /opt/vcpkg/ports/mpmcqueue && \ 
     rm -rf /opt/vcpkg/ports/snappy && \
     rm -rf /opt/vcpkg/ports/folly && \
+    rm -rf /opt/vcpkg/ports/bshoshany-thread-pool  && \
     cp -r /tmp/vcpkg_libs/cmake/* /opt/vcpkg/ports && \ 
     /opt/vcpkg/vcpkg install "redis-plus-plus[cxx17]" curlpp poco modern-cpp-kafka datasketches && \ 
-    /opt/vcpkg/vcpkg install rtdsync snappy && \
+    /opt/vcpkg/vcpkg install rtdsync snappy bshoshany-thread-pool && \
     /opt/vcpkg/vcpkg install mpmcqueue folly && \
     rm -rf /opt/vcpkg/packages &&  \ 
     rm -rf /opt/vcpkg/downloads &&  \ 
@@ -140,9 +141,24 @@ RUN apt -y remove golang && apt -y autoremove && \
     tar -xf ghz-linux-x86_64.tar.gz  -C /usr/local && \
     rm -rf *.tar.gz
 
+<<<<<<< HEAD
 
+=======
+RUN apt-get update && apt install -y  lsb-core  && \ 
+    git clone --depth 1  --branch release/1.83 https://github.com/google/orbit.git /opt/orbit && cd /opt/orbit && \
+    apt-get install sudo && \
+    apt-get install -y net-tools && \
+    apt-get install -y sysstats && \
+    rm -rf /var/lib/apt/lists/*
+    #&& \
+    #echo "#!/bin/bash\n\$@" > /usr/bin/sudo && \
+    #chmod +x /usr/bin/sudo
+>>>>>>> 467007a (update some lib)
 ENV PATH="/usr/local/go/bin:/root/.local/bin:$PATH"
 RUN ln -s /usr/local/ghz /usr/bin/ghz
+#RUN cd /opt/orbit && \ 
+    #bash ./bootstrap-orbit.sh
 
+# install hotspot,heaptrack,uftrace to profile and monitor the application
 ENV https_proxy=""
 
